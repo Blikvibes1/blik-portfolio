@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SYSTEM:// BLIK.EXE — Joseph Agyei</title>
+<meta name="description" content="BLIK — Joseph Agyei. Cyberpunk OS, Datavibes GH, Next.js, creative systems. Interactive terminal portfolio.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700;800&family=Orbitron:wght@500;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<canvas id="matrixCanvas" aria-hidden="true"></canvas>
+<div class="grid-overlay" aria-hidden="true"></div>
+<div class="scanlines" aria-hidden="true"></div>
+<div class="vignette" aria-hidden="true"></div>
+<div class="curve-flicker" aria-hidden="true"></div>
+
+<a class="visually-hidden" href="#home">Skip to content</a>
+
+<header class="nav">
+  <div class="nav-inner">
+    <div class="brand"><span class="dot"></span> SYSTEM://&nbsp;<span class="text-glow-cyan">BLIK.EXE</span></div>
+    <button class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="navLinks">MENU</button>
+    <nav class="links" id="navLinks" aria-label="Primary">
+      <a href="#home">Home</a>
+      <a href="#about">About</a>
+      <a href="#projects">Projects</a>
+      <a href="#ai-lab">AI Prompt Lab</a>
+      <a href="#experience">Experience</a>
+      <a href="#blog">Blog</a>
+      <a href="#contact">Contact</a>
+      <select id="themePackSelect" class="theme-select" aria-label="Theme pack" title="Theme pack"></select>
+      <select id="localeSelect" class="locale-select" aria-label="Language">
+        <option value="en">EN</option>
+        <option value="tw">TW</option>
+      </select>
+      <button type="button" id="colorModeBtn" class="icon-btn" aria-label="Toggle light or dark mode" title="Color mode">☾</button>
+    </nav>
+  </div>
+</header>
+
+<div class="content">
+
+<!-- ================= HOME ================= -->
+<section id="home">
+  <div class="wrap hero-grid">
+    <div>
+      <div class="eyebrow">// BOOT_SEQUENCE_COMPLETE</div>
+      <h1 class="hero-logo glitch text-glow-green">BLIK</h1>
+      <p class="hero-tagline">Full-stack builder. Portfolio of <strong style="color:var(--cyan)">Joseph Agyei</strong> — Cyberpunk OS, Datavibes GH, generative systems, and production-shaped web apps.</p>
+      <div class="hero-ctas">
+        <a href="#projects" class="btn btn-solid">▶ Enter System</a>
+        <a href="#projects" class="btn btn-outline-cyan">View Projects</a>
+        <a href="#ai-lab" class="btn btn-outline-magenta">Launch AI Lab</a>
+      </div>
+    </div>
+
+    <div class="terminal-window">
+      <div class="term-bar">
+        <div class="left"><span class="term-lock">🔒</span> SYSTEM:// BLIK.EXE</div>
+        <div class="term-url">https://blik.josephagyei.com</div>
+      </div>
+      <div class="term-body">
+        <div class="term-status">
+          <span>SYSTEM <span style="color:var(--green)">ONLINE</span></span><span class="sep">|</span>
+          <span>LVL 12</span><span class="sep">|</span>
+          <span>XP: 5,850 <span class="xp-bar"><i></i></span></span>
+        </div>
+
+        <div style="text-align:center; margin:18px 0;">
+          <div class="node-grid" id="nodeGrid" aria-hidden="true"></div>
+        </div>
+
+        <div class="prompt-line">BLIK@SYSTEM:~$ <span id="welcomeType"></span></div>
+
+        <div id="heroLog"></div>
+
+        <form id="cmdForm" aria-label="Terminal command input">
+          <span>BLIK@SYSTEM:~$</span>
+          <input id="cmdInput" type="text" autocomplete="off" spellcheck="false" placeholder="type 'help'..." aria-label="Terminal command">
+          <span class="cursor" aria-hidden="true"></span>
+        </form>
+
+        <div class="cmd-tabs">
+          <button class="cmd-tab cyan" data-cmd="help">HELP</button>
+          <button class="cmd-tab green" data-cmd="skills">SKILLS</button>
+          <button class="cmd-tab magenta" data-cmd="commands">CK_COMMANDS</button>
+        </div>
+        <div class="footer-label" style="margin-top:16px;">LEAD TERMINAL v2.0</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= ABOUT ================= -->
+<section id="about">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">// cat about.log</div>
+      <h2 class="section-title text-glow-green">About</h2>
+    </div>
+    <div class="about-grid">
+      <div class="terminal-window">
+        <div class="term-bar">
+          <div class="left"><span class="term-lock">🔒</span> ABOUT.LOG</div>
+          <div class="term-dots"><span class="r"></span><span class="y"></span><span class="g"></span></div>
+        </div>
+        <div class="term-body">
+          <div class="bio-line"><span class="k">$</span> whoami</div>
+          <div class="bio-line">&gt; Joseph Agyei — operator handle <strong style="color:var(--cyan)">BLIK</strong>. Currently running system diagnostics on new ideas and shipping small, reliable tools.</div>
+          <div class="bio-line"><span class="k">$</span> cat mission.txt</div>
+          <div class="bio-line">&gt; Focused on building things that are fast, well-structured, and quietly powerful — the kind of systems that work whether or not anyone's watching the logs.</div>
+          <div class="bio-line"><span class="k">$</span> cat status.txt</div>
+          <div class="bio-line">&gt; <span class="tl-placeholder">// ADD_BIO_DETAIL</span> Open to new missions and collaborations — see <a href="#contact" style="color:var(--cyan)">contact</a> to establish a connection.</div>
+        </div>
+      </div>
+
+      <div class="terminal-window">
+        <div class="term-bar">
+          <div class="left"><span class="term-lock">🔒</span> SKILLS_MATRIX</div>
+        </div>
+        <div class="term-body">
+          <div style="font-size:11px; color:var(--cyan); margin-bottom:14px; letter-spacing:.05em;">// RESERVED SLOTS — POPULATE ON DEPLOY</div>
+          <img id="profilePhoto" class="profile-photo" alt="Joseph Agyei" hidden width="96" height="96">
+          <p id="aboutBio" class="lede" style="max-width:640px;margin-bottom:18px;">Joseph Agyei (BLIK) builds systems at the edge of product and experiment.</p>
+      <div class="skills-matrix" id="skillsMatrix"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= PROJECTS ================= -->
+<section id="projects">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">// ls ./projects</div>
+      <h2 class="section-title text-glow-cyan">Projects</h2>
+    </div>
+    <div id="tagFilters" class="tag-filters"></div>
+    <div class="proj-grid" id="projGrid"></div>
+  </div>
+</section>
+
+<!-- ================= AI PROMPT LAB ================= -->
+<section id="ai-lab">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">// exec ai_prompt_lab --interactive</div>
+      <h2 class="section-title text-glow-magenta">AI Prompt Lab</h2>
+      <p style="font-size:12.5px; color:#9be8ac; max-width:640px; margin-top:8px;">An in-universe hacking console. Type a prompt about technology, creativity, or system exploration and the console will simulate a response. Wire this up to a live LLM API on deploy — see README.</p>
+    </div>
+
+    <div class="terminal-window lab-shell">
+      <div class="term-bar">
+        <div class="left"><span class="term-lock">🔒</span> AI_PROMPT_LAB.EXE</div>
+        <div class="term-url">session://local</div>
+      </div>
+      <div class="term-body" style="padding:0;">
+        <div class="lab-history" id="labHistory" aria-live="polite">
+          <div class="meta">[SYSTEM] Prompt Lab initialized. History is stored for this session only.</div>
+        </div>
+        <div class="lab-examples">
+          <button class="lab-example" data-ex="Design a tiny protocol for two terminals to trust each other.">design a trust protocol</button>
+          <button class="lab-example" data-ex="Suggest a creative name for a rogue AI subroutine.">name a rogue subroutine</button>
+          <button class="lab-example" data-ex="Explain how a firewall thinks, in one paragraph.">explain a firewall</button>
+          <button class="lab-example" data-ex="Write a one-line system log for a successful breach test.">write a system log line</button>
+        </div>
+        <div id="labOut" class="lab-out" style="min-height:48px;margin:10px 0;font-size:12.5px;color:#a8f0b6;line-height:1.55;"></div>
+        <form class="lab-input-row" id="labForm">
+          <span style="color:var(--magenta); font-size:13px;">prompt&gt;</span>
+          <input id="labInput" type="text" autocomplete="off" placeholder="Ask the system something..." aria-label="AI prompt input">
+        </form>
+        <div class="lab-actions">
+          <button type="button" class="cmd-tab cyan" id="labSave">SAVE_LOG</button>
+          <button type="button" class="cmd-tab magenta" id="labShare">SHARE</button>
+          <button type="button" class="cmd-tab green" id="labClear">CLEAR</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= EXPERIENCE ================= -->
+<section id="experience">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">// tail -f experience.log</div>
+      <h2 class="section-title text-glow-green">Experience</h2>
+    </div>
+    <div class="terminal-window">
+      <div class="term-bar">
+        <div class="left"><span class="term-lock">🔒</span> SYSTEM_HISTORY</div>
+      </div>
+      <div class="term-body">
+        <div class="timeline" id="timeline"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= CONTACT ================= -->
+
+<!-- ================= BLOG ================= -->
+<section id="blog" hidden>
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">// cat posts/*.md</div>
+      <h2 class="section-title text-glow-cyan">Blog</h2>
+    </div>
+    <div class="proj-grid" id="blogGrid"></div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">// exec establish_connection</div>
+      <h2 class="section-title text-glow-cyan">Contact</h2>
+    </div>
+    <div class="contact-grid">
+      <div class="terminal-window">
+        <div class="term-bar">
+          <div class="left"><span class="term-lock">🔒</span> TRANSMIT.SH</div>
+        </div>
+        <div class="term-body">
+          <form id="contactForm" name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field" novalidate>
+            <input type="hidden" name="form-name" value="contact">
+            <p class="visually-hidden"><label>Don’t fill: <input name="bot-field"></label></p>
+            <div class="field">
+              <label for="cName">Name</label>
+              <input id="cName" name="name" type="text" required>
+            </div>
+            <div class="field">
+              <label for="cEmail">Email</label>
+              <input id="cEmail" name="email" type="email" required>
+            </div>
+            <div class="field">
+              <label for="cMsg">Message</label>
+              <textarea id="cMsg" name="message" rows="4" required></textarea>
+            </div>
+            <button type="submit" class="btn btn-solid">▶ Transmit</button>
+            <div id="contactStatus" role="status"></div>
+          </form>
+        </div>
+      </div>
+
+      <div class="terminal-window">
+        <div class="term-bar">
+          <div class="left"><span class="term-lock">🔒</span> UPLINKS</div>
+        </div>
+        <div class="term-body">
+          <div class="contact-meta">
+            <div>STATUS: <span style="color:var(--green)">ACCEPTING_TRANSMISSIONS</span></div>
+            <div>REGION: <span class="tl-placeholder">// ADD_LOCATION</span></div>
+            <div>RESPONSE_TIME: ~24–48h</div>
+          </div>
+          <div class="social-row">
+            <a class="social-btn" href="#" aria-label="LinkedIn" title="LinkedIn">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5C4.98 4.88 3.87 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1s2.48 1.12 2.48 2.5zM.5 8.5h4V23h-4V8.5zM8.5 8.5h3.8v1.98h.05c.53-1 1.83-2.06 3.77-2.06 4.03 0 4.78 2.65 4.78 6.1V23h-4v-6.7c0-1.6-.03-3.66-2.23-3.66-2.24 0-2.58 1.75-2.58 3.55V23h-4V8.5z"/></svg>
+            </a>
+            <a class="social-btn" href="#" aria-label="GitHub" title="GitHub">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.73.5.5 5.73.5 12c0 5.08 3.29 9.39 7.86 10.91.57.1.78-.25.78-.55v-2.15c-3.2.7-3.87-1.36-3.87-1.36-.53-1.34-1.29-1.7-1.29-1.7-1.06-.72.08-.7.08-.7 1.17.08 1.78 1.2 1.78 1.2 1.04 1.78 2.73 1.27 3.4.97.1-.75.4-1.27.73-1.56-2.55-.29-5.24-1.28-5.24-5.68 0-1.26.45-2.28 1.19-3.09-.12-.3-.52-1.5.11-3.12 0 0 .97-.31 3.18 1.18a11 11 0 0 1 5.8 0c2.2-1.49 3.17-1.18 3.17-1.18.64 1.62.24 2.82.12 3.12.74.81 1.18 1.83 1.18 3.09 0 4.41-2.69 5.38-5.25 5.67.41.36.78 1.05.78 2.12v3.14c0 .3.2.66.79.55A10.52 10.52 0 0 0 23.5 12c0-6.27-5.23-11.5-11.5-11.5z"/></svg>
+            </a>
+            <a class="social-btn" href="#" aria-label="X (Twitter)" title="X / Twitter">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M18.9 2H22l-7.5 8.6L23.3 22h-6.9l-5.4-6.6L4.8 22H1.7l8-9.2L1 2h7l4.9 6.1L18.9 2zm-1.2 18h1.9L7.4 3.9H5.4L17.7 20z"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+</div>
+
+<footer>
+  <div class="foot-title">LEAD SOFTWARE ENGINEER TERMINAL v2.0 © Joseph Agyei</div>
+  <div class="foot-status">SYSTEM ONLINE | LVL 12 | XP: 5,850</div>
+</footer>
+
+<!-- ============ PROJECT MODAL ============ -->
+<div class="modal-backdrop" id="modalBackdrop" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+  <div class="terminal-window modal-box">
+    <div class="term-bar">
+      <div class="left"><span class="term-lock">🔒</span> <span id="modalTitle">PROJECT_DETAIL</span></div>
+      <button class="modal-close" id="modalClose">[ X ] CLOSE</button>
+    </div>
+    <div class="term-body" id="modalBody"></div>
+  </div>
+</div>
+
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="js/config.js"></script>
+<script src="js/supabase-client.js"></script>
+<script src="js/matrix-rain.js"></script>
+<script src="js/node-grid.js"></script>
+<script src="js/nav.js"></script>
+<script src="js/terminal.js"></script>
+<script src="js/projects.js"></script>
+<script src="js/prompt-lab.js"></script>
+<script src="js/content.js"></script>
+<script src="js/socials.js"></script>
+<script src="js/theme.js"></script>
+<script src="js/contact.js"></script>
+<script src="js/visits.js"></script>
+<script src="js/i18n.js"></script>
+<script src="js/ai-guide.js"></script>
+<script src="js/blog.js"></script>
+<script src="js/main.js"></script>
+
+<footer style="text-align:center;padding:28px 16px;color:var(--muted);font-size:12px;border-top:1px solid rgba(0,255,100,.15);"><span id="footerText">SYSTEM:// BLIK.EXE — Built by Joseph Agyei.</span></footer>
+
+<button type="button" class="ai-guide-toggle" id="aiGuideToggle" data-i18n="ai_guide_title">AI Tour Guide</button>
+<div class="ai-guide-panel" id="aiGuidePanel" hidden>
+  <div style="display:flex;justify-content:space-between;align-items:center;gap:8px;">
+    <strong data-i18n="ai_guide_title">AI Tour Guide</strong>
+    <button type="button" id="aiGuideStart" class="icon-btn" data-i18n="ai_guide_start">Start tour</button>
+  </div>
+  <div class="ai-guide-log" id="aiGuideLog"></div>
+  <form id="aiGuideForm" style="display:flex;gap:6px;">
+    <input id="aiGuideInput" placeholder="Ask about a project…" style="flex:1;background:#060a07;border:1px solid rgba(0,255,100,.3);color:#d4f5d8;padding:8px;border-radius:6px;font:12px JetBrains Mono,monospace;">
+    <button type="submit" class="icon-btn">Send</button>
+  </form>
+</div>
+
+</body>
+</html>

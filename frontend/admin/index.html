@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ADMIN:// BLIK — Control Panel</title>
+<meta name="robots" content="noindex,nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Orbitron:wght@600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="admin.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <div class="brand">ADMIN:// <span>BLIK</span></div>
+    <div class="top-actions">
+      <a class="ghost" href="../index.html">← Public site</a>
+      <button type="button" id="btnLogout" class="ghost" hidden>Log out</button>
+    </div>
+  </header>
+
+  <section id="loginView" class="panel">
+    <h1>Operator login</h1>
+    <p class="muted">Supabase Auth — email + password. Configure keys in <code>js/config.js</code>.</p>
+    <form id="loginForm" class="form">
+      <label>Email<input type="email" id="loginEmail" required autocomplete="username"></label>
+      <label>Password<input type="password" id="loginPassword" required autocomplete="current-password"></label>
+      <button type="submit" class="primary">Authenticate</button>
+      <p id="loginError" class="error" role="alert"></p>
+    </form>
+  </section>
+
+  
+  <section id="gateView" class="panel" hidden>
+    <h1>Secondary lock</h1>
+    <p class="muted">Extra passphrase required for this admin host.</p>
+    <form id="gateForm" class="form">
+      <label>Admin passphrase<input type="password" id="gatePass" required autocomplete="current-password"></label>
+      <button type="submit" class="primary">Unlock</button>
+      <p id="gateError" class="error"></p>
+    </form>
+  </section>
+
+  <section id="appView" hidden>
+    <nav class="tabs" id="tabs">
+      <button type="button" class="tab active" data-tab="projects">Projects</button>
+      <button type="button" class="tab" data-tab="skills">Skills</button>
+      <button type="button" class="tab" data-tab="timeline">Timeline</button>
+      <button type="button" class="tab" data-tab="socials">Socials</button>
+      <button type="button" class="tab" data-tab="copy">Site copy</button>
+      <button type="button" class="tab" data-tab="blog">Blog</button>
+      <button type="button" class="tab" data-tab="analytics">Analytics</button>
+      <button type="button" class="tab" data-tab="logs">Activity log</button>
+      <button type="button" class="tab" data-tab="system">System</button>
+    </nav>
+    <p id="statusLine" class="muted small"></p>
+
+    <div id="panel-projects" class="tab-panel">
+      <div class="toolbar">
+        <h1>Projects</h1>
+        <button type="button" id="btnNewProject" class="primary">+ New</button>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Order</th><th>Name</th><th>Status</th><th>Tags</th><th></th></tr></thead>
+          <tbody id="projTable"></tbody>
+        </table>
+      </div>
+    </div>
+
+    <div id="panel-skills" class="tab-panel" hidden>
+      <div class="toolbar">
+        <h1>Skills</h1>
+        <button type="button" id="btnNewSkill" class="primary">+ New</button>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Order</th><th>Label</th><th>Status</th><th></th></tr></thead>
+          <tbody id="skillTable"></tbody>
+        </table>
+      </div>
+    </div>
+
+    <div id="panel-timeline" class="tab-panel" hidden>
+      <div class="toolbar">
+        <h1>Timeline</h1>
+        <button type="button" id="btnNewTimeline" class="primary">+ New</button>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Order</th><th>Date</th><th>Role</th><th>Status</th><th></th></tr></thead>
+          <tbody id="tlTable"></tbody>
+        </table>
+      </div>
+    </div>
+
+    <div id="panel-socials" class="tab-panel" hidden>
+      <div class="toolbar">
+        <h1>Social links</h1>
+        <p class="muted small" style="margin:0">Set URL and activate to show logo on the public site.</p>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Network</th><th>URL</th><th>Active</th><th></th></tr></thead>
+          <tbody id="socialTable"></tbody>
+        </table>
+      </div>
+    </div>
+
+    <div id="panel-copy" class="tab-panel" hidden>
+      <div class="toolbar"><h1>Site copy</h1></div>
+      <form id="copyForm" class="form copy-form">
+        <label>Hero tagline<textarea id="copyHero" rows="3"></textarea></label>
+        <label>About bio<textarea id="copyAbout" rows="4"></textarea></label>
+        <label>Footer text<textarea id="copyFooter" rows="2"></textarea></label>
+        <label>Profile photo URL<input id="copyPhoto" type="url" placeholder="https://"></label>
+        <label>SEO title<input id="copySeoTitle"></label>
+        <label>SEO description<textarea id="copySeoDesc" rows="2"></textarea></label>
+        <label>Default theme pack
+          <select id="copyTheme">
+            <option value="classic-matrix">Classic Matrix</option>
+            <option value="grid-ops">Grid Ops</option>
+            <option value="crt-terminal">CRT Terminal</option>
+            <option value="minimal-dark">Minimal Dark</option>
+            <option value="particle-dust">Particle Dust</option>
+            <option value="aurora-field">Aurora Field</option>
+            <option value="blueprint">Blueprint</option>
+          </select>
+        </label>
+        <button type="submit" class="primary">Save copy</button>
+        <p id="copyStatus" class="muted small"></p>
+      </form>
+    </div>
+  </section>
+
+  
+    
+    <div id="panel-blog" class="tab-panel" hidden>
+      <div class="toolbar">
+        <h1>Blog posts</h1>
+        <button type="button" id="btnNewPost" class="primary">+ New post</button>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Order</th><th>Title</th><th>Status</th><th>Locale</th><th></th></tr></thead>
+          <tbody id="postTable"></tbody>
+        </table>
+      </div>
+    </div>
+
+    <div id="panel-analytics" class="tab-panel" hidden>
+      <div class="toolbar"><h1>Visits (privacy-first)</h1></div>
+      <p class="muted small">Counts only. No visitor identity, IP, or content stored in this view.</p>
+      <p id="visitTotal" class="status-big">—</p>
+      <div class="table-wrap"><table><thead><tr><th>Day (UTC)</th><th>Hits</th></tr></thead><tbody id="visitTable"></tbody></table></div>
+    </div>
+    <div id="panel-logs" class="tab-panel" hidden>
+      <div class="toolbar"><h1>Activity log</h1></div>
+      <div class="table-wrap"><table><thead><tr><th>When</th><th>Action</th><th>Entity</th><th>Detail</th></tr></thead><tbody id="logTable"></tbody></table></div>
+    </div>
+    <div id="panel-system" class="tab-panel" hidden>
+      <div class="toolbar"><h1>System</h1></div>
+      <p class="muted">Reset content-facing defaults (theme pack, locale preference keys in site_copy). Does not delete projects.</p>
+      <button type="button" id="btnResetDefaults" class="primary">Restore default featuring mode</button>
+      <p id="systemStatus" class="muted small"></p>
+      
+      <hr style="border-color:var(--border);margin:20px 0;">
+      <h2>Secondary admin lock</h2>
+      <label class="row-check"><input type="checkbox" id="gateEnabled"> Require passphrase after login</label>
+      <label>Passphrase<input type="password" id="gatePassSet" placeholder="Leave blank to keep current"></label>
+      <button type="button" id="btnSaveGate" class="primary">Save lock settings</button>
+      <hr style="border-color:var(--border);margin:20px 0;">
+      <h2>Profile photo upload</h2>
+      <input type="file" id="avatarFile" accept="image/*">
+      <p id="avatarStatus" class="muted small"></p>
+
+      <p class="muted small" style="margin-top:16px">Storage: create public buckets <code>covers</code> and <code>avatars</code> in Supabase for uploads.</p>
+    </div>
+
+  <dialog id="editDialog">
+    <form id="editForm" class="form dialog-form">
+      <h2 id="editTitle">Edit</h2>
+      <input type="hidden" id="fKind">
+      <input type="hidden" id="fId">
+      <div id="fieldsProject">
+        <label>Name<input id="fName"></label>
+        <label>Slug<input id="fSlug" pattern="[a-z0-9\-]*"></label>
+        <label>Description<textarea id="fDesc" rows="4"></textarea></label>
+        <label>Tags (comma-separated)<input id="fTags"></label>
+        <label>Demo URL<input id="fDemo" type="url"></label>
+        <label>Repo URL<input id="fRepo" type="url"></label>
+        <label>Cover URL<input id="fCover" type="url"></label>
+        <label>Or upload cover<input id="fCoverFile" type="file" accept="image/*"></label>
+      </div>
+      <div id="fieldsSkill" hidden>
+        <label>Label<input id="fSkillLabel"></label>
+      </div>
+      <div id="fieldsPost" hidden>
+        <label>Title<input id="fPostTitle"></label>
+        <label>Slug<input id="fPostSlug" pattern="[a-z0-9\-]*"></label>
+        <label>Body<textarea id="fPostBody" rows="8"></textarea></label>
+        <label>Cover URL<input id="fPostCover" type="url"></label>
+        <label>Locale<input id="fPostLocale" value="en"></label>
+      </div>
+      <div id="fieldsTimeline" hidden>
+        <label>Date label<input id="fDate"></label>
+        <label>Role<input id="fRole"></label>
+        <label>Description<textarea id="fTlDesc" rows="3"></textarea></label>
+      </div>
+      <label>Sort order<input id="fSort" type="number" value="0"></label>
+      <label class="row-check"><input id="fPublished" type="checkbox"> Published</label>
+      <div class="dialog-actions">
+        <button type="button" id="btnCancel" class="ghost">Cancel</button>
+        <button type="submit" class="primary">Save</button>
+      </div>
+      <p id="editError" class="error"></p>
+    </form>
+  </dialog>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="../js/config.js"></script>
+<script src="admin.js"></script>
+</body>
+</html>
